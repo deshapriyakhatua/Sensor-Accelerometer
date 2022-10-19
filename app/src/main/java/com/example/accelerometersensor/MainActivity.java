@@ -1,6 +1,7 @@
 package com.example.accelerometersensor;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 
 import android.graphics.Color;
 import android.hardware.Sensor;
@@ -18,6 +19,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // hiding action bar
+        getSupportActionBar().hide();
+
+        // hiding status bar
+        WindowCompat.setDecorFitsSystemWindows(getWindow(),false);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
