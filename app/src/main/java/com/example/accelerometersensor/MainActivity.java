@@ -2,6 +2,7 @@ package com.example.accelerometersensor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -47,9 +48,22 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             TextView textView = findViewById(R.id.textView);
             TextView textView2 = findViewById(R.id.textView2);
             TextView textView3 = findViewById(R.id.textView3);
-            textView.setText("x : "+sensorEvent.values[0]);
-            textView2.setText(" y : "+sensorEvent.values[1]);
+            TextView textView4 = findViewById(R.id.textView4);
+
+            textView2.setText("x : "+sensorEvent.values[0]);
+            textView.setText(" y : "+sensorEvent.values[1]);
             textView3.setText(" z : "+sensorEvent.values[2]);
+
+            int zIndex = (int)sensorEvent.values[2];
+            int neg = 9;
+
+            if(zIndex<0){ textView4.setBackgroundColor(Color.BLUE); neg = 9; }
+            else{ textView4.setBackgroundColor(Color.WHITE); neg = -9; }
+
+            textView4.setRotationX((float)Math.floor(sensorEvent.values[1]) * neg);
+            textView4.setRotationY((float)Math.floor(sensorEvent.values[0]) * neg);
+
+
         }
     }
 
